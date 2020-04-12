@@ -1,0 +1,59 @@
+<div class="mt-5">
+  <h2>Posts</h2>
+  <form>
+    <div class="form-group form-inline">
+      Search:
+      <!-- <input
+        class="form-control ml-2"
+        type="text"
+        id="search"
+        name="search"
+        #search="ngModel"
+        [(ngModel)]="searchKey"
+      /> -->
+    </div>
+  </form>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Title</th>
+        <th scope="col">Body</th>
+        <th scope="col">Delete</th>
+        <th scope="col">Edit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let post of posts$ | async as posts">
+        <th scope="row">{{ post.id }}</th>
+        <td>
+          <button
+            type="button"
+            class="btn btn-link"
+            (click)="viewPost(post.id)"
+          >
+            {{ post.title }}
+          </button>
+        </td>
+        <td>
+          {{ post.body }}
+        </td>
+        <td>
+          <button class="btn btn-danger" (click)="deletePost(post.id)">
+          Delete
+          </button>
+        </td>
+        <td>
+          <button class="btn btn-primary" (click)="editPost(post.id)">
+            Edit
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button type="button" class="btn btn-primary" (click)="addNewPost()">
+    Add New Post
+  </button>
+</div>

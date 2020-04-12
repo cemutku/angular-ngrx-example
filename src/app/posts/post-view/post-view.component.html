@@ -1,0 +1,10 @@
+<div *ngIf="post$ | async as post">
+  <h2>View Post</h2>
+  <div class="card w-75 mt-5">
+    <div class="card-body">
+      <h5 class="card-title">{{ post.title }}</h5>
+      <p class="card-text">{{ post.body }}</p>
+      <button class="btn btn-primary" (click)="backToPostList()">Back</button>
+    </div>
+  </div>
+</div>
