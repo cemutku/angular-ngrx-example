@@ -7,20 +7,6 @@ import { Post } from "../../models/post.model";
   styleUrls: ["./post-list.component.scss"],
 })
 export class PostListComponent {
-  // private _searchKey: string = "";
-
-  // get searchKey(): string {
-  //   return this._searchKey;
-  // }
-
-  // set searchKey(value: string) {
-  //   this._searchKey = value;
-  //   this.postService.search(value).subscribe({
-  //     next: (posts: Post[]) => (this.posts = posts),
-  //     error: (err) => this.onError(err),
-  //   });
-  // }
-
   @Input() errorMessage: string;
   @Input() posts: Post[];
 
@@ -28,6 +14,18 @@ export class PostListComponent {
   @Output() add = new EventEmitter<void>();
   @Output() delete = new EventEmitter<number>();
   @Output() view = new EventEmitter<number>();
+  @Output() search = new EventEmitter<string>();
+
+  private _searchKey: string = "";
+
+  get searchKey(): string {
+    return this._searchKey;
+  }
+
+  set searchKey(value: string) {
+    this._searchKey = value;
+    this.search.emit(value);
+  }
 
   editPost(id: number): void {
     this.edit.emit(id);

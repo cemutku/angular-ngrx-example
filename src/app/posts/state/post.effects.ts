@@ -82,6 +82,18 @@ export class PostEffects {
     )
   );
 
+  @Effect()
+  searchPosts$: Observable<Action> = this.actions$.pipe(
+    ofType(postActions.PostActionTypes.SearchPost),
+    map((action: postActions.SearchPost) => action.payload),
+    mergeMap((searchKey: string) =>
+      this.postService.search(searchKey).pipe(
+        map((posts: Post[]) => new postActions.SearchPostSuccess(posts)),
+        catchError((err) => of(new postActions.SearchPostFail(err)))
+      )
+    )
+  );
+
   onSaveSuccess(): void {
     this.toastr.success("Save Successful");
     this.router.navigate(["/"]);

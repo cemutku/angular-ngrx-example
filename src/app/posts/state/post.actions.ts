@@ -4,6 +4,9 @@ import { Post } from "../models/post.model";
 export enum PostActionTypes {
   SetCurrentPost = "[Post] Set Current Post",
   InitializeNewPost = "[Post] Initialize New Post",
+  SearchPost = "[Post] Search Post",
+  SearchPostSuccess = "[Post] Search Post Success",
+  SearchPostFail = "[Post] Search Post Fail",
   LoadPosts = "[Post] Load Posts",
   LoadPostsSuccess = "[Post] Load Posts Success",
   LoadPostsFail = "[Post] Load Posts Fail",
@@ -121,6 +124,24 @@ export class CreatePostFail implements Action {
   constructor(public payload: string) {}
 }
 
+export class SearchPost implements Action {
+  readonly type = PostActionTypes.SearchPost;
+
+  constructor(public payload: string) {}
+}
+
+export class SearchPostSuccess implements Action {
+  readonly type = PostActionTypes.SearchPostSuccess;
+
+  constructor(public payload: Post[]) {}
+}
+
+export class SearchPostFail implements Action {
+  readonly type = PostActionTypes.SearchPostFail;
+
+  constructor(public payload: string) {}
+}
+
 export type PostActions =
   | InitializeNewPost
   | LoadPosts
@@ -138,4 +159,7 @@ export type PostActions =
   | GetPostFail
   | CreatePost
   | CreatePostSuccess
-  | CreatePostFail;
+  | CreatePostFail
+  | SearchPost
+  | SearchPostSuccess
+  | SearchPostFail;

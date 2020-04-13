@@ -76,6 +76,18 @@ export function reducer(state = initialState, action: PostActions): PostState {
         currentPost: null,
         error: action.payload,
       };
+    case PostActionTypes.SearchPostFail:
+      return {
+        ...state,
+        posts: [],
+        error: action.payload,
+      };
+    case PostActionTypes.SearchPostSuccess:
+      return {
+        ...state,
+        posts: action.payload,
+        error: "",
+      };
 
     default:
       return state;
