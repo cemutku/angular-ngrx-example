@@ -1,0 +1,6 @@
+<app-post-edit
+  [currentPost]="post$ | async"
+  [errorMessage]="errorMessage$ | async"
+  (savePost)="savePost($event)"
+  (backToList)="backToPostList()"
+></app-post-edit>

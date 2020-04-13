@@ -1,0 +1,10 @@
+<app-post-list
+  [errorMessage]="errorMessage$ | async"
+  [posts]="posts$ | async"
+  (edit)="editPost($event)"
+  (add)="addNewPost()"
+  (delete)="deletePost($event)"
+  (view)="viewPost($event)"
+  (onError)="onError($event)"
+>
+</app-post-list>
